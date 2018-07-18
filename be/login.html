@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>登入</title>
+	<link rel="stylesheet" href="content/bootstrap.min.css">
+	<link rel="stylesheet" href="content/w3.css">
+	<link rel="stylesheet" href="content/cf-login.css">
+    <link rel="stylesheet" href="content/load.css">
+    <link rel="stylesheet" href="content/load-be-control.css">
+
+	<script src="scripts/jquery-3.3.1.js"></script>
+	<script src="scripts/jquery-3.3.1.min.js"></script>
+	<script src="scripts/bootstrap.min.js"></script>
+</head>
+<body>
+    <div id="load-all" class="load-all">
+		<div class="load-main w3-display-container">
+			<div class="load8 w3-display-middle">
+				<div class="load8-container container1">
+					<div class="circle1"></div>
+					<div class="circle2"></div>
+					<div class="circle3"></div>
+					<div class="circle4"></div>
+				</div>
+				<div class="load8-container container2">
+					<div class="circle1"></div>
+					<div class="circle2"></div>
+					<div class="circle3"></div>
+					<div class="circle4"></div>
+				</div>
+				<div class="load8-container container3">
+					<div class="circle1"></div>
+					<div class="circle2"></div>
+					<div class="circle3"></div>
+					<div class="circle4"></div>
+				</div>
+			</div>
+		</div>		
+	</div>
+	<div class="all">
+		<div class="main">
+			<div class="logo-area">
+				<center>
+					<img src="image/logo.svg" width="108" height="108" class="d-inline-block align-top" alt="">
+				</center>
+			</div>
+			<div class="form-area">
+				<div>
+					<center>
+						<input id="pword" onclick="CheckPword()" onkeyup="CheckPword()" onchange="CheckPword()" class="w3-input w3-border w3-round-large" type="password">
+						<p id="pword_check" class="form-area-check"></p>
+    					<p id="pword_check_value" class="form-area-check-value">0</p>
+					</center>
+					
+				</div>
+				<div>
+					<center>
+						<a href="index.html">
+							<img src="image/login.png" width="36" height="36" class="d-inline-block align-top" alt="">
+						</a>
+					</center>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script>
+	function checkAll() {
+        var num = 0;
+        num = Number($("#pword_check_value").html());
+        if (num == 1) {
+            $("#output").removeClass('w3-disabled');
+        } else {
+            $("#output").addClass('w3-disabled');
+        }
+    }
+
+    function CheckPword() {
+        if ($("#pword").val() != '' & $("#pword").val().length > 0) {
+            $("#pword_check").html("");
+            $("#pword").removeClass('w3-border-red');
+            $("#pword_check").removeClass('w3-text-red');
+            $("#pword_check").addClass('w3-text-green');
+            $("#pword_check_value").html('1');
+            checkAll();
+        } else {
+            $("#pword_check").html("請輸入");
+            $("#pword").addClass('w3-border-red');
+            $("#pword_check").removeClass('w3-text-green');
+            $("#pword_check").addClass('w3-text-red');
+            $("#pword_check_value").html('0');
+            checkAll();
+        }
+    }
+
+    //輸入欄位設置檢查動作
+    setTimeout(function () {
+        $("#pword").keypress(function (event) {
+            return setKeyEnter(event);
+        });
+
+        //按鈕狀態重設
+        $("#output").addClass('w3-disabled');
+    }, 100);
+
+    //設置Enter Key事件
+    function setKeyEnter(event) {
+        var keycode = event.keyCode || event.which;
+        if (keycode == '13') {
+            var num = 0;
+            num = Number($("#pword_check_value").html());
+            if (num == 1) {
+                post();
+            } else {
+                CheckPword();
+            }
+            return false;
+        }
+        return true;
+    }
+</script>
+
+</html>
