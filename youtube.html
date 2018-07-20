@@ -46,6 +46,7 @@
 <meta charset=utf-8>
 </head>
 <body>
+	<p id="isfirstplay">0</p>
 <div class="video-background">
     <div class="video-foreground">
       <div id="ytplayer"></div>
@@ -104,7 +105,10 @@
         }else{
         	setTimeout(function(){
         		playVideo();
-        		closeAudio();
+        		if(document.getElementById("isfirstplay").innerHTML!='1'){
+        			closeAudio();
+        			document.getElementById("isfirstplay").innerHTML='1';
+        		}
         	}, 10);
         }
         if (event.data === YT.PlayerState.ENDED) {
