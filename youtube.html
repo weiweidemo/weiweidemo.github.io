@@ -99,13 +99,13 @@
       var done = false;
       function onPlayerStateChange(event) {
         if (event.data == YT.PlayerState.PLAYING && !done) {
-          setTimeout(closeAudio, 100);
+          setTimeout(closeAudio, 10);
           done = true;
         }else{
         	setTimeout(function(){
         		playVideo();
         		closeAudio();
-        	}, 100);
+        	}, 10);
         }
         if (event.data === YT.PlayerState.ENDED) {
           player.playVideo(); 
