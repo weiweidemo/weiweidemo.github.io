@@ -101,6 +101,11 @@
         if (event.data == YT.PlayerState.PLAYING && !done) {
           setTimeout(closeAudio, 100);
           done = true;
+        }else{
+        	setTimeout(function(){
+        		playVideo();
+        		closeAudio();
+        	}, 100);
         }
         if (event.data === YT.PlayerState.ENDED) {
           player.playVideo(); 
@@ -115,6 +120,10 @@
 
       function closeAudio(){
         player.mute();
+      }
+
+      function playVideo(){
+      	player.playVideo();
       }
 
       function stopVideo() {
